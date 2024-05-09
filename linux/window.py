@@ -9,8 +9,8 @@ def init():
 
     windowID = xdo.search_windows(b"hackmud")
 
-    if len(windowID) < 1:
-        raise Exception("Cannot find window")
+    if windowID == None or len(windowID) < 1:
+        raise Exception("Cannot find hackmud window")
 
     if len(windowID) > 1:
         print("Warning: multiple windows titled \"hackmud\" detected. Selecting the first one")
@@ -23,9 +23,9 @@ def sendkeys(keys: str):
         
         for (i,chunk) in enumerate(chunks):
             if len(chunk):
-                xdo.enter_text_window(window=windowID, string=chunk)
+                xdo.enter_text_window(window=windowID, string=chunk.encode())
             
             if i != (len(chunks)-1): # ignore last chunk
-                xdo.send_keysequence_window(window=windowID, keysequence="XK_Linefeed")
+                xdo.send_keysequence_window(window=windowID, keysequence="Return".encode())
     else:
-        xdo.enter_text_window(window=windowID, string=keys)
+        xdo.enter_text_window(window=windowID, string=keys.encode())
