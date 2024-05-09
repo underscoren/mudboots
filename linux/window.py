@@ -1,4 +1,5 @@
 from xdo import Xdo
+import os
 
 xdo = Xdo()
 
@@ -18,6 +19,9 @@ def init():
     windowID = windowID[0]
 
 def sendkeys(keys: str):
+    # workaround for https://github.com/jordansissel/xdotool/issues/150
+    os.system("xdotool key --clearmodifiers shift")
+
     if "\n" in keys:
         chunks = keys.split("\n")
         
