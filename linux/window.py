@@ -7,7 +7,7 @@ windowID = None
 def init():
     global windowID
 
-    windowID = xdo.search_windows("hackmud")
+    windowID = xdo.search_windows(b"hackmud")
 
     if len(windowID) < 1:
         raise Exception("Cannot find window")
