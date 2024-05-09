@@ -5,6 +5,7 @@ import logs
 import re
 
 shellLogOffset = "shell.txt.offset"
+lastHardline = 0
 
 # ignore logs previously unread
 def skipLog():
@@ -78,4 +79,9 @@ def enter_hardline():
         sleep(0.1)
     
     sleep(12)
+
+    # record last time hardline was enabled
+    global lastHardline
+    lastHardline = time()
+
     return getLogs()
