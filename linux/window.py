@@ -21,6 +21,7 @@ def init():
 def sendkeys(keys: str):
     # workaround for https://github.com/jordansissel/xdotool/issues/150
     os.system("xdotool key --clearmodifiers shift")
+    os.system("setxkbmap")
 
     if "\n" in keys:
         chunks = keys.split("\n")
